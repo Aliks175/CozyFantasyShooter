@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39de3ac39f56c4d4abf9039fb165ecaa, type: 3}
+  m_Name: HealthPoint
+  m_EditorClassIdentifier: 
+  Model: {fileID: 0}
+  IconItem: {fileID: -1964223080, guid: 540fa7639d9629245a35ed7c6b12f696, type: 3}
+  DataItem:
+    Name: PotionRed
+    Id: 3
+    IsStackable: 1
+    CountItem: 1
+    TypeUse: 1
+    TypeItem: 2
+    DescriptionItem: "\u0425\u0438\u043B\u043A\u0430"
