@@ -44,7 +44,10 @@ public class SlotItem : MonoBehaviour
 
     public int GetId()
     {
-        return _item.Id;
+        int id = -1;
+        if (_item != null)
+            id = _item.Id;
+        return id;
     }
 
     public void SendItem(Action<Item> action)
