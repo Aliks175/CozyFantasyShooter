@@ -8,18 +8,18 @@ using UnityEngine.UI;
 /// </summary>
 public class SlotItem : MonoBehaviour
 {
-    //public Item Item => _item;
     public bool IsFreeSlot => !_item.Exists;
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _countItem;
     private Item _item;
-    private bool _isCheckUse = false;
     private int _countChange;
+    private bool _isCheckUse = false;
     public event Action OnUpdateView;
 
     public void Initialization()
     {
         _item = new Item();
+        _isCheckUse = false;
     }
 
     /// <summary>
@@ -55,11 +55,8 @@ public class SlotItem : MonoBehaviour
     public bool CheckChangeCountItem(int count)
     {
         if (count == 0) return false;
-
         _isCheckUse = _item.CountItem + count >= 0;
         _countChange = _isCheckUse ? count : 0;
-
-        Debug.Log($"isPositiveNumber - {_isCheckUse}");
         return _isCheckUse;
     }
 
@@ -76,10 +73,8 @@ public class SlotItem : MonoBehaviour
         return;
     }
 
-
     private void ClearSlot()
     {
-        Debug.Log($"Item Null");
         _item.ClearItem();
         UpdateView();
     }

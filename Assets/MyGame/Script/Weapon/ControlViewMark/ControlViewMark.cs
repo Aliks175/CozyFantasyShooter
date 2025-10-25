@@ -7,12 +7,12 @@ public class ControlViewMark : MonoBehaviour
 {
     [SerializeField] private float _timeWait = 0.1f;
     [SerializeField] private float _timeWaitForDisable = 10f;
-    [SerializeField] private int _valueMark = 50;
+    [SerializeField] private int _startValueMark = 50;
     [SerializeField] private Mark markPref;
     [SerializeField] private GameObject _marksParent;
-    private int valueMark;
+    private int _valueMark;
     private List<Mark> _list;
-    private WaitForSeconds wait;
+    private WaitForSeconds _wait;
     private event Action OnUpdateMark;
 
     private void OnDisable()
@@ -27,8 +27,8 @@ public class ControlViewMark : MonoBehaviour
 
     public void Initialization()
     {
-        valueMark = _valueMark;
-        wait = new WaitForSeconds(_timeWait);
+        _valueMark = _startValueMark;
+        _wait = new WaitForSeconds(_timeWait);
         _list = new List<Mark>();
         MainSystem.OnUpdate += OnUpdate;
         CreatePool();
@@ -39,17 +39,13 @@ public class ControlViewMark : MonoBehaviour
         Mark mark = FindFreeMark();
         if (mark == null)
         {
-            
             mark = _list[0];
             mark.End();
         }
-
         OnUpdateMark += mark.OnUpdate;
         mark.OnEnd += MarkEnd;
         mark.OnDestroyMark += MarkDestroy;
-
         return mark;
-        // Мы подписываемся на то что у них работает апдейт и при окончании Енд мы отписываемся чтобы он не работал в пустую 
     }
 
     private void MarkEnd(Mark mark)
@@ -72,7 +68,7 @@ public class ControlViewMark : MonoBehaviour
     {
         if (_list.Count == 0)
         {
-            StartCoroutine(Create(markPref, valueMark));
+            StartCoroutine(Create(markPref, _valueMark));
         }
     }
 
@@ -91,18 +87,16 @@ public class ControlViewMark : MonoBehaviour
 
     private void WaitMark()
     {
-        valueMark *= 2;
-        StartCoroutine(Create(markPref, valueMark));
+        _valueMark *= 2;
+        StartCoroutine(Create(markPref, _valueMark));
     }
-
-   
 
     private IEnumerator Create(Mark markPref, int valueMark)
     {
         while (_list.Count < valueMark)
         {
-            yield return wait;
-            GameObject tempGameObject = Instantiate(markPref.gameObject, Vector3.zero, Quaternion.identity,_marksParent.transform);
+            yield return _wait;
+            GameObject tempGameObject = Instantiate(markPref.gameObject, Vector3.zero, Quaternion.identity, _marksParent.transform);
             Mark tempMark = tempGameObject.GetComponent<Mark>();
             tempMark.Initialization(_timeWaitForDisable);
             _list.Add(tempMark);

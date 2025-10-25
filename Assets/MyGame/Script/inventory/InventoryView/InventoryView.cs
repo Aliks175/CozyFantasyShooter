@@ -9,7 +9,7 @@ public class InventoryView : MonoBehaviour
 
     public void Initialization()
     {
-        if(_inventoryPanel == null)
+        if (_inventoryPanel == null)
         {
             Debug.LogError($"InventoryView - Not found -> InventoryPanel");
         }

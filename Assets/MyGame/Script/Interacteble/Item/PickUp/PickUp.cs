@@ -5,7 +5,7 @@ public class PickUp : Interacteble
 {
     [Header("Item")]
     [SerializeField] private BazeItem _bazeItem;
-    [SerializeField] private TypeUse isDestroyForOver;
+    [SerializeField] private TypeUse _isDestroyForOver;
     [Header("Player")]
     [SerializeField] private LayerMask _layerPlayer;
     [SerializeField] private float _distanceForPlayer = 5;
@@ -16,7 +16,6 @@ public class PickUp : Interacteble
         if (_playerCharacter == null)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, _distanceForPlayer, _layerPlayer);
-
             foreach (Collider collider in colliders)
             {
                 if (collider.TryGetComponent(out PlayerCharacter playerCharacter))
@@ -26,12 +25,10 @@ public class PickUp : Interacteble
                 }
             }
         }
-
         if (_playerCharacter == null) return;
-
         if (_playerCharacter.PlayerData.Inventory.CheckSlot(_bazeItem))
         {
-            if (isDestroyForOver == TypeUse.Expendable)
+            if (_isDestroyForOver == TypeUse.Expendable)
             {
                 Destroy(gameObject);
             }

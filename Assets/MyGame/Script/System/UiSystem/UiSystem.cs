@@ -24,8 +24,7 @@ public class UiSystem : MonoBehaviour
 
     private void SetUp()
     {
-        _playerWeaponThrow.OnChangeWeapon += Context =>_uiEquip.ChangeBonusWeapon();
-        
+        _playerWeaponThrow.OnChangeWeapon += Context => _uiEquip.ChangeBonusWeapon();
         _playerChooseWeapon.OnChangeWeapon += Context => _uiEquip.ChangeWeaponName(Context.Name);
     }
 }

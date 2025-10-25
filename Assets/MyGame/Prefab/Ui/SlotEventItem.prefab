@@ -454,7 +454,4 @@ MonoBehaviour:
   _icon: {fileID: 6689020437628964099}
   _canvasGroup: {fileID: 7396340312563660406}
   _nameItem: {fileID: 9113430578469508811}
-  _CountItem: {fileID: 3754840645873236987}
-  _timerView: 0.5
-  _speedView: 3
-  _speedHide: 2
+  _countItem: {fileID: 3754840645873236987}

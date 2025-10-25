@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Mark : MonoBehaviour
 {
-    [HideInInspector]public bool IsFree;
+    [HideInInspector] public bool IsFree;
     [SerializeField] private MeshRenderer _meshRenderer;
-    private float _time;
+    private float _startTime;
     private float _timer;
     public event Action<Mark> OnEnd;
     public event Action<Mark> OnDestroyMark;
@@ -28,13 +28,13 @@ public class Mark : MonoBehaviour
 
     public void Initialization(float Time)
     {
-        _time = Time;
+        _startTime = Time;
         SetUp();
     }
 
     public void SetMark()
     {
-        _timer = _time + Time.time;
+        _timer = _startTime + Time.time;
         _meshRenderer.enabled = true;
         IsFree = false;
     }

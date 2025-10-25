@@ -40,7 +40,6 @@ public class WeaponEffect : MonoBehaviour
     {
         _animator.SetBool(_isShootAnimationID, true);
         _animator.SetTrigger(_shootAnimationID);
-
         if (_audioSource != null)
         {
             _audioSource.Play();
@@ -49,10 +48,8 @@ public class WeaponEffect : MonoBehaviour
         {
             _particleSystem.Play();
         }
-
         CreateMark(typeShoot.raycastHit);
     }
-
 
     private void CreateMark(RaycastHit Pos)
     {

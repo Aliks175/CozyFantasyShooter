@@ -10,11 +10,7 @@ public class PlayerInventory : MonoBehaviour
     public void Initialization(IPlayerDatable playerData)
     {
         _playerData = playerData;
-        if (slotItems == null || slotItems.Length == 0)
-        {
-            Debug.Log($"Not Found SlotItem return NULL {gameObject.name}");
-            return;
-        }
+        if (slotItems == null || slotItems.Length == 0) return;
         for (int i = 0; i < slotItems.Length; i++)
         {
             slotItems[i].Initialization();
@@ -23,7 +19,7 @@ public class PlayerInventory : MonoBehaviour
 
     public bool CheckSlot(BazeItem item)
     {
-        bool isSuccess ;
+        bool isSuccess;
         if (item.DataItem.IsStackable)
         {
             isSuccess = AddStackableItem(item);
@@ -51,25 +47,6 @@ public class PlayerInventory : MonoBehaviour
         }
         return tempSlot;
     }
-
-    //public List<Item> FindTypeItem(TypeItem item)
-    //{
-    //    List<Item> templist = new();
-    //    foreach (SlotItem slotItem in slotItems)
-    //    {
-    //        if (!slotItem.IsFreeSlot)
-    //        {
-    //            Item tempSlot;
-    //            tempSlot = slotItem.GetTypeItem(item);
-
-    //            if (tempSlot != null)
-    //            {
-    //                templist.Add(tempSlot);
-    //            }
-    //        }
-    //    }
-    //    return templist;
-    //}
 
     private bool AddUnStackableItem(BazeItem item)
     {

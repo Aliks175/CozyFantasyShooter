@@ -1,12 +1,8 @@
 using UnityEditor;
 
 [CustomEditor(typeof(Interacteble), true)]
-public class InteractebleEditor : Editor// наследуемся от Editor , мы заменяем стандартный редактор для скрипта Interacteble
-                                        //на тот что напишем сами [CustomEditor(typeof(Interacteble),true)] - True означает что 
-                                        // изменению так же будут подвержены все дочерние классы отнаследованные от него 
+public class InteractebleEditor : Editor
 {
-
-
     public override void OnInspectorGUI()// Вызывается каждый раз когда юнити обновляет интерфейс редактора 
     {
         Interacteble interacteble = (Interacteble)target;// тот самый скрипт который выбран в редакторе  
@@ -15,12 +11,9 @@ public class InteractebleEditor : Editor// наследуемся от Editor , мы заменяем с
         {
             // здесь мы пишем полностью новый редактор с полями 
             interacteble.Description = EditorGUILayout.TextField("Prompt", interacteble.Description);// мы создаем поле в редакторе с названием Prompt
-                                                                                           // , оно будет присваивать значение для interacteble.Prompt
-
-
+                                                                                                     // , оно будет присваивать значение для interacteble.Prompt
             EditorGUILayout.HelpBox("InteractebleOnlyEvents Can only Use UnityEvents", MessageType.Info);// мы создаем информационную плашку
                                                                                                          // с введеным текстом 
-
             if (interacteble.GetComponent<InteractebleEvents>() == null)// проверяем есть ли на объекте InteractebleEvents
             {
                 interacteble.UseEvents = true;
@@ -45,10 +38,6 @@ public class InteractebleEditor : Editor// наследуемся от Editor , мы заменяем с
                     DestroyImmediate(interacteble.GetComponent<InteractebleEvents>());// то мы их удаляем 
                 }
             }
-
         }
-
     }
-
-
 }

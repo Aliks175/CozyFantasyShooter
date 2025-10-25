@@ -12,7 +12,6 @@ public class ShootingWeapon : MonoBehaviour
     private Coroutine _coroutine;
     private bool _isFire = false;
     private float _nextTimeToFire = 0f;
-
     public Action<TypeShoot> OnFire;
     public Action OnEndFire;
 
@@ -40,7 +39,7 @@ public class ShootingWeapon : MonoBehaviour
     {
         if (_weaponEffect == null || _weapon == null) return;
 
-        if (value.phase == InputActionPhase.Started)// в момент нажатия собирает значения ввода 
+        if (value.phase == InputActionPhase.Started)
         {
             if (_weapon.IsAutoFire)
             {
@@ -51,7 +50,7 @@ public class ShootingWeapon : MonoBehaviour
                 ShootSingleFire();
             }
         }
-        if (value.phase == InputActionPhase.Canceled)// когда ввод завершен останавливает персонажа 
+        if (value.phase == InputActionPhase.Canceled)
         {
             StopFire();
         }
@@ -95,7 +94,6 @@ public class ShootingWeapon : MonoBehaviour
 
             if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit, _weapon.Range))
             {
-                //Debug.Log($"ShootSingleFire - {hit.collider.name}");
                 if (hit.collider.TryGetComponent(out IHealtheble target))
                 {
                     target.TakeDamage(_weapon.Damage);

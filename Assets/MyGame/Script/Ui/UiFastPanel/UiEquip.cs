@@ -8,7 +8,6 @@ public class UiEquip : MonoBehaviour
     private PlayerInventory _playerInventory;
     private PlayerWeaponThrow _playerWeaponThrow;
     private SlotItem _slotItem;
-    private int _id;
 
     public void Initialization(PlayerInventory playerInventory, PlayerWeaponThrow playerWeaponThrow)
     {
@@ -19,24 +18,14 @@ public class UiEquip : MonoBehaviour
     public void ChangeBonusWeapon()
     {
         Weapon tempWeapon = _playerWeaponThrow.GetEquipWeapon();
-        if (tempWeapon != null)
+        if (tempWeapon == null)
         {
-            Debug.Log($"1 tempWeapon - NotNull {tempWeapon != null} ");
-            Debug.Log($"2 My Id {_id} - tempWeapon - {tempWeapon.Id} ");
-            _id = tempWeapon.Id;
-        }
-        else
-        {
-            Debug.Log($"3 Nuuul");
             if (_slotItem != null)
             {
                 _slotItem.OnUpdateView -= UpdateViewBonusWeapon;
             }
             return;
         }
-
-
-        Debug.Log($"4 My Id {_id} - tempWeapon - {tempWeapon.Id} ");
 
         if (_slotItem != null)
         {
@@ -50,16 +39,10 @@ public class UiEquip : MonoBehaviour
             _slotItem.OnUpdateView += UpdateViewBonusWeapon;
         }
         UpdateViewBonusWeapon();
-
-
     }
 
     private void ChangeBonusWeaponName(Item item)
     {
-
-        //int id = _playerWeaponThrow.GetEquipWeapon()?.Id;
-        //if (_slotItem != null) 
-        //if ( != item.Id) return; 
         string name = "Empty";
         if (item is Weapon weapon)
         {
@@ -73,24 +56,10 @@ public class UiEquip : MonoBehaviour
         PrintName(name, _nameEquipBonusWeapon);
     }
 
-
     private void UpdateViewBonusWeapon()
     {
         _slotItem.SendItem(ChangeBonusWeaponName);
     }
-
-    //private void ChangeBonusWeaponName(string name, int count)
-    //{
-    //    if (!string.IsNullOrEmpty(name))
-    //    {
-    //        name = $"{name}\nx {count}";
-    //    }
-    //    else
-    //    {
-    //        name = "Empty";
-    //    }
-    //    PrintName(name, _nameEquipBonusWeapon);
-    //}
 
     public void ChangeWeaponName(string name)
     {

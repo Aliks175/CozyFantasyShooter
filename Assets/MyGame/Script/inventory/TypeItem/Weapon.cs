@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class Weapon : Item
 {
@@ -17,7 +16,6 @@ public class Weapon : Item
         {
             DataWeapon = weapon.DataWeapon;
             characterData.ChooseWeapon.SetWeapon(DataWeapon.TypeWeapon, this);
-            Debug.Log($"Initialization - {DataWeapon.TypeWeapon}");
         }
     }
 }
@@ -26,7 +24,7 @@ public enum TypeWeapon
 {
     none,
     Pistol,
-    Posoh,
+    Stick,
     Grenade
 }
 

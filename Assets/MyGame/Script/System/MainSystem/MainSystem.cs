@@ -7,13 +7,12 @@ public class MainSystem : MonoBehaviour
     [SerializeField] private WeaponSystem _weaponSystem;
     [SerializeField] private PlayerSystem _playerSystem;
     [SerializeField] private InventorySystem _inventorySystem;
-    [SerializeField] private UiSystem  _uiSystem;
+    [SerializeField] private UiSystem _uiSystem;
     [Header("Other")]
     [SerializeField] private InputControl _inputControl;
     [SerializeField] private PlayerCharacter _player;
     [SerializeField] private Camera _camera;
-
-    public static event Action OnUpdate ;
+    public static event Action OnUpdate;
 
     private void Awake()
     {

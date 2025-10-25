@@ -10,14 +10,14 @@ public class SlotEvent : MonoBehaviour
     [SerializeField] private Image _icon;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private TextMeshProUGUI _nameItem;
-    [SerializeField] private TextMeshProUGUI _CountItem;
+    [SerializeField] private TextMeshProUGUI _countItem;
     private float _timerView;
-     private float _speedView;
+    private float _speedView;
     private float _speedHide;
     private WaitForSeconds _waitTime;
     private bool _isPlay = false;
 
-    public void Initialization(float timerView , float speedView, float speedHide)
+    public void Initialization(float timerView, float speedView, float speedHide)
     {
         _timerView = timerView;
         _speedView = speedView;
@@ -35,7 +35,7 @@ public class SlotEvent : MonoBehaviour
     {
         _icon.sprite = item.IconItem;
         _nameItem.SetText(item.Name);
-        _CountItem.SetText($"x {item.CountItem} ");
+        _countItem.SetText($"x {item.CountItem} ");
         gameObject.SetActive(true);
         _isPlay = true;
         OnView();
@@ -80,7 +80,7 @@ public class SlotEvent : MonoBehaviour
         {
             yield return null;
             tempTime += modCoefficient * _speedCoefficient * Time.deltaTime;
-            if (isEnd && tempTime<= end) 
+            if (isEnd && tempTime <= end)
             {
                 _isPlay = false;
             }

@@ -16,7 +16,6 @@ public class TestTarget : MonoBehaviour, IHealtheble
     {
         damage = Mathf.Abs(damage);
         _health -= damage;
-       
         if (_health <= 0f)
         {
             Die();

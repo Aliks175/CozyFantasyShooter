@@ -19,11 +19,9 @@ public class PlayerData : MonoBehaviour, IPlayerDatable
     public void Initialization(PlayerCharacter playerCharacter, Camera camera)
     {
         _playerCharacter = playerCharacter;
-
         _inventory.Initialization(this);
         _chooseWeapon.Initialization();
         _playerWeaponThrow.Initialization(camera, _inventory);
-
         SetUp();
     }
 
@@ -39,5 +37,5 @@ public interface IPlayerDatable
     public PlayerCharacter PlayerCharacter { get; }
     public PlayerChooseWeapon ChooseWeapon { get; }
     public PlayerWeaponThrow PlayerWeaponThrow { get; }
-    public void Initialization(PlayerCharacter playerCharacter,Camera camera);
+    public void Initialization(PlayerCharacter playerCharacter, Camera camera);
 }

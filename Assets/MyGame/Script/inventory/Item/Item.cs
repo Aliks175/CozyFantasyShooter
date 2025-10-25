@@ -1,13 +1,12 @@
 using System;
 using UnityEngine;
 
-public class Item 
+public class Item
 {
     public GameObject Model;
     public Sprite IconItem;
     public bool Exists;
     private DataItem DataItem;
-
     public string Name => DataItem.Name;
     public int Id => DataItem.Id;
     public bool IsStackable => DataItem.IsStackable;
@@ -20,11 +19,6 @@ public class Item
     public TypeItem TypeItem => DataItem.TypeItem;
     [TextArea(2, 5)]
     public string DescriptionItem => DataItem.DescriptionItem;
-
-
-
-
-
     protected IPlayerDatable _characterData;
 
     public Item()

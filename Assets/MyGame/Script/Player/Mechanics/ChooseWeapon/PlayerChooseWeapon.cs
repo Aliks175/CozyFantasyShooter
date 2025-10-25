@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PlayerChooseWeapon : MonoBehaviour
 {
-    // Слот руки будем проверять занеты ли они 
-    [SerializeField] private Weapon _weapon;
-
     private List<Weapon> _oneSlot;
     private List<Weapon> _twoSlot;
     //...
+    private Weapon _equipWeapon;
     private SlotNumber _slotNumber;
     private int _indexWeapon;
     public event Action<Weapon> OnChangeWeapon;
@@ -70,8 +68,8 @@ public class PlayerChooseWeapon : MonoBehaviour
         tempWeapon = GetWeapon(weaponsSlot, slotNumber);
         if (tempWeapon != null)
         {
-            _weapon = tempWeapon;
-            OnChangeWeapon?.Invoke(_weapon);
+            _equipWeapon = tempWeapon;
+            OnChangeWeapon?.Invoke(_equipWeapon);
         }
     }
 
@@ -84,10 +82,7 @@ public class PlayerChooseWeapon : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Count -> " + weaponsSlot.Count);
             _indexWeapon = weaponsSlot.Count - 1 == _indexWeapon ? 0 : _indexWeapon + 1;
-            //Debug.Log(weaponsSlot.Count < _indexWeapon);
-            //Debug.Log("_indexWeapon -> " + _indexWeapon);
         }
     }
 
@@ -100,7 +95,7 @@ public class PlayerChooseWeapon : MonoBehaviour
             case TypeWeapon.Pistol:
                 CheckWeapon(_oneSlot, Weapon);
                 break;
-            case TypeWeapon.Posoh:
+            case TypeWeapon.Stick:
                 CheckWeapon(_twoSlot, Weapon);
                 break;
             case TypeWeapon.Grenade:
@@ -119,7 +114,7 @@ public class PlayerChooseWeapon : MonoBehaviour
 
         if (_indexWeapon < weaponsSlot.Count)
         {
-            if (weaponsSlot[_indexWeapon] != _weapon && weaponsSlot[_indexWeapon] != null)
+            if (weaponsSlot[_indexWeapon] != _equipWeapon && weaponsSlot[_indexWeapon] != null)
             {
                 weapon = weaponsSlot[_indexWeapon];
             }

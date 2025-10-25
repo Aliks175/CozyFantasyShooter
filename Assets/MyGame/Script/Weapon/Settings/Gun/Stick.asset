@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e62cbfc7c4d6f4d43a65f3e6b9dfa2e4, type: 3}
-  m_Name: Posoh
+  m_Name: Stick
   m_EditorClassIdentifier: 
   Model: {fileID: 1606552241044747000, guid: b64ae4d46994ef54a853fe9137609cd4, type: 3}
   IconItem: {fileID: -839682812, guid: 540fa7639d9629245a35ed7c6b12f696, type: 3}
   DataItem:
-    Name: Posoh
+    Name: Stick
     Id: 2
     IsStackable: 0
     CountItem: 1

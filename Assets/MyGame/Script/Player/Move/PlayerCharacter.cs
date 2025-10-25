@@ -9,7 +9,6 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private PlayerInteracteble _playerInteracteble;
     private IPlayerDatable _playerData;
 
-
     private void Awake()
     {
         _playerData = GetComponent<IPlayerDatable>();
@@ -22,7 +21,5 @@ public class PlayerCharacter : MonoBehaviour
         _playerAim.Initialization(camera);
         _playerInteracteble.Initialization(camera);
         _playerData.Initialization(this, camera);
-      
     }
-
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerWeaponThrow : MonoBehaviour
 {
+    [SerializeField] WeaponThrowPool _weaponThrowPool;
     [SerializeField] private float _forceThrow;
     [SerializeField] private float _directionY = 15;
     [SerializeField] private Transform _firePoint;
@@ -11,7 +12,7 @@ public class PlayerWeaponThrow : MonoBehaviour
     private Camera _camera;
     private Weapon _equipWeapon;
     private List<Weapon> _throwWeaponsSlot;
-
+    private float _nextTimeToFire;
     public event Action<Weapon> OnChangeWeapon;
 
     public void Initialization(Camera camera, PlayerInventory playerInventory)
@@ -19,30 +20,44 @@ public class PlayerWeaponThrow : MonoBehaviour
         _playerInventory = playerInventory;
         _camera = camera;
         _throwWeaponsSlot = new List<Weapon>();
+        _weaponThrowPool.Initialization();
     }
 
     public void Throw()
     {
-        Debug.Log("Check Throw");
         SlotItem slotItem = CheckItem();
         if (slotItem != null)
         {
-            Debug.Log("Fire");
-            Rigidbody rb = TestFire();
-            Vector3 tempDirection = Quaternion.AngleAxis(-_directionY, _camera.transform.right) * _camera.transform.forward;
-            rb.AddForce(tempDirection * _forceThrow, ForceMode.Impulse);
-            slotItem.ChangeCountItem();
-            CheckLostWeapon();
-        }
+            if (Time.time >= _nextTimeToFire)
+            {
+                _nextTimeToFire = Time.time + _equipWeapon.TimeWaitFire;
 
+                if (GetWeaponThrow())
+                {
+                    slotItem.ChangeCountItem();
+                    CheckLostWeapon();
+                }
+            }
+        }
+    }
+
+    private bool GetWeaponThrow()
+    {
+        GameObject tempWeapon = _weaponThrowPool.GetWeaponGameObject(_equipWeapon);
+        if (tempWeapon == null) return false;
+        Rigidbody rb = tempWeapon.GetComponent<Rigidbody>();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        tempWeapon.transform.position = _firePoint.position;
+        Vector3 tempDirection = Quaternion.AngleAxis(-_directionY, _camera.transform.right) * _camera.transform.forward;
+        rb.AddForce(tempDirection * _forceThrow, ForceMode.Impulse);
+        return true;
     }
 
     public Weapon GetEquipWeapon()
     {
         if (_equipWeapon != null)
         {
-
-            Debug.Log($"_equipWeapon - {_equipWeapon.TypeWeapon}");
             return _equipWeapon;
         }
         return null;
@@ -53,24 +68,18 @@ public class PlayerWeaponThrow : MonoBehaviour
         SlotItem slotItem = null;
         if (_equipWeapon == null)
         {
-            Debug.Log("Granade Not Found");
             return slotItem;
         }
-
         if (_equipWeapon.CountItem <= 0)
         {
             return slotItem;
         }
-
         slotItem = _playerInventory.FindSlotItem(_equipWeapon.Id);
-
         if (slotItem == null) return null;
-
         if (!slotItem.CheckChangeCountItem(-1))
         {
             slotItem = null;
         }
-
         return slotItem;
     }
 
@@ -99,28 +108,18 @@ public class PlayerWeaponThrow : MonoBehaviour
             if (item.CountItem > 0)
             {
                 _equipWeapon = item;
+                _weaponThrowPool.SetWeaponThrow(_equipWeapon);
                 OnChangeWeapon?.Invoke(_equipWeapon);
                 return;
             }
         }
     }
 
-    private Rigidbody TestFire()
-    {
-        GameObject tempWeapon = Instantiate(_equipWeapon.Model, _firePoint.position, Quaternion.identity);
-
-        return tempWeapon.GetComponent<Rigidbody>();
-    }
-
-
-
     public void SetWeapon(Weapon weapon)
     {
         if (weapon.TypeWeapon == TypeWeapon.Grenade)
         {
-            Debug.Log($"SetWeapon ===< {weapon.TypeWeapon}");
             _throwWeaponsSlot.Add(weapon);
-
             ChooseWeapon();
         }
     }

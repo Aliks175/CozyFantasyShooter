@@ -4845,7 +4845,7 @@ GameObject:
   - component: {fileID: 5785123117956352400}
   - component: {fileID: 341330353382825450}
   m_Layer: 0
-  m_Name: PosohModel
+  m_Name: StickModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

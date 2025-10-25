@@ -429,7 +429,7 @@ MonoBehaviour:
   UseEvents: 0
   _description: '"E"\nPickUp\nGrenade'
   _bazeItem: {fileID: 11400000, guid: e3a75aeaf200ea045a88dae3eb58022f, type: 2}
-  isDestroyForOver: 1
+  _isDestroyForOver: 1
   _layerPlayer:
     serializedVersion: 2
     m_Bits: 128

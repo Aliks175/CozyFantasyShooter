@@ -8,7 +8,6 @@ public class ChooseWeaponView : MonoBehaviour
     private List<WeaponEffect> _listWeaponEffect;
     private WeaponEffect _activeWeapon;
     private GameObject _weaponSlot;
-
     public event Action<WeaponEffect> OnWeaponEquip;
 
     public void Initialization()
@@ -30,10 +29,6 @@ public class ChooseWeaponView : MonoBehaviour
             {
                 _listWeaponEffect.Add(weaponEffect);
                 ActiveNewWeapon(weaponEffect);
-            }
-            else
-            {
-                Debug.LogError($"Not Found WeaponEffect - ID - {weapon.Id} ");
             }
         }
     }
