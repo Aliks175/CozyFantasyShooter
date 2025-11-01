@@ -48,7 +48,7 @@ public class PlayerWeaponThrow : MonoBehaviour
         Rigidbody rb = tempWeapon.GetComponent<Rigidbody>();
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        tempWeapon.transform.position = _firePoint.position;
+        rb.position = _firePoint.position;
         Vector3 tempDirection = Quaternion.AngleAxis(-_directionY, _camera.transform.right) * _camera.transform.forward;
         rb.AddForce(tempDirection * _forceThrow, ForceMode.Impulse);
         return true;

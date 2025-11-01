@@ -65,7 +65,7 @@ public class InputControl : MonoBehaviour
         _playerActions.Disable();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         _playerMover.ProcessMove(_playerActions.Move.ReadValue<Vector2>());
     }
