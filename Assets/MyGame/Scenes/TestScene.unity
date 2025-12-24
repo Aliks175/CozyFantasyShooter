@@ -10328,6 +10328,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manikin
       objectReference: {fileID: 0}
+    - target: {fileID: 5961345499799238728, guid: c45425ada102aba44be782411d8df526, type: 3}
+      propertyPath: m_TagString
+      value: Test
+      objectReference: {fileID: 0}
     - target: {fileID: 5986936244939962452, guid: c45425ada102aba44be782411d8df526, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.79
@@ -10438,6 +10442,10 @@ PrefabInstance:
     - target: {fileID: 8965721319423278868, guid: 91d9ff05835ab2e48967f02baa95cbf2, type: 3}
       propertyPath: m_Name
       value: PistolModelEmpty
+      objectReference: {fileID: 0}
+    - target: {fileID: 8965721319423278868, guid: 91d9ff05835ab2e48967f02baa95cbf2, type: 3}
+      propertyPath: m_TagString
+      value: Test
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
